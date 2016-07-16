@@ -1,0 +1,30 @@
+m_version: 1
+
+default-language: kor
+
+kor-default-prefix: [서버]
+
+kor-commands-cash: 캐쉬
+kor-commands-cash-usage: /캐쉬 <내캐쉬|충전|내역>
+kor-commands-cash-description: 캐쉬를 충전하거나 내역을 확인합니다.
+
+kor-commands-managecash: 캐쉬관리
+kor-commands-managecash-usage: /캐쉬관리 <보기|주기|뺏기|충전목록|확인|권한주기>
+kor-commands-managecash-description: 캐쉬를 관리합니다.
+
+kor-commands-mycash: 내캐쉬
+kor-commands-charge: 충전
+kor-commands-log: 내역
+kor-commands-see: 보기
+kor-commands-give: 주기
+kor-commands-take: 뺏기
+kor-commands-chargelist: 충전목록
+kor-commands-check: 확인
+kor-commands-givepermission: 권한주기
+
+kor-commands-cash-charge-usage: "/캐쉬 충전 <핀번호>"
+kor-commands-cash-log-usage: "/캐쉬 내역 <페이지>"
+
+kor-show-cash: "당신의 보유 캐쉬: %cash캐쉬"
+
+kor-not-right-pin: "%pin은 올바르지 않은 핀번호 입니다!"
