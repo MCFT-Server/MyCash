@@ -1,5 +1,7 @@
 package mycash.database;
 
+import java.io.File;
+
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import mycash.Main;
@@ -12,8 +14,9 @@ public class DataBase extends BaseDB<Main> {
 	public DataBase(Main plugin) {
 		super(plugin);
 		initMessage();
-		initDB("cash", plugin.getDataFolder().getPath() + "/cash.json", Config.JSON);
-		initDB("config", plugin.getDataFolder().getPath() + "/config.yml", Config.YAML, new ConfigSection() {{
+		initDB("cash", new File(plugin.getDataFolder(), "cash.json"), Config.JSON);
+		initDB("waitlist", new File(plugin.getDataFolder(), "waitlist.json"), Config.JSON);
+		initDB("config", new File(plugin.getDataFolder(), "config.yml"), Config.YAML, new ConfigSection() {{
 			put("default-cash", 0);
 		}});
 		

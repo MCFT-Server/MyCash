@@ -6,8 +6,6 @@ import cn.nukkit.Player;
 import mycash.cash.Account;
 import mycash.database.DataBase;
 import mycash.exception.PlayerAlreadyHaveAccountException;
-import mycash.exception.PlayerNotHaveAccountException;
-import mycash.exception.PlayerNotHaveEnoughCashExeception;
 
 public class CashManager {
 	private static CashManager instance;
@@ -60,6 +58,6 @@ public class CashManager {
 	 * @return boolean
 	 */
 	public boolean isRightPinNumber(String pinNumber) {
-		return Pattern.matches("....-....-....-....", pinNumber) ? true : Pattern.matches("....-....-....-......", pinNumber);
+		return Pattern.matches(".... .... .... ....", pinNumber) ? true : Pattern.matches(".... .... .... ......", pinNumber);
 	}
 }

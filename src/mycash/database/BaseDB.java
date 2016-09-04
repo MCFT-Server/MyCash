@@ -1,5 +1,6 @@
 package mycash.database;
 
+import java.io.File;
 import java.util.LinkedHashMap;
 
 import cn.nukkit.command.CommandSender;
@@ -23,11 +24,17 @@ abstract class BaseDB<T extends PluginBase> {
 		dblist = new LinkedHashMap<String, Config>();
 	}
 	
+	protected void initDB(String name, File file, int type) {
+		initDB(name, file.toString(), type);
+	}
+	protected void initDB(String name, File file, int type, ConfigSection defaultMap) {
+		initDB(name, file.toString(), type, defaultMap);
+	}
 	protected void initDB(String name, String file, int type) {
 		initDB(name, file, type, new ConfigSection());
 	}
-	protected void initDB(String name, String file, int type, ConfigSection defaultmap) {
-		dblist.put(name, new Config(file, type, defaultmap));
+	protected void initDB(String name, String file, int type, ConfigSection defaultMap) {
+		dblist.put(name, new Config(file, type, defaultMap));
 	}
 	
 	public Config getDB(String name) {
