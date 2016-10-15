@@ -9,7 +9,7 @@ kor-commands-cash-usage: /캐쉬 <내캐쉬|충전|내역>
 kor-commands-cash-description: 캐쉬를 충전하거나 내역을 확인합니다.
 
 kor-commands-managecash: 캐쉬관리
-kor-commands-managecash-usage: /캐쉬관리 <보기|주기|뺏기|충전목록|확인|권한주기>
+kor-commands-managecash-usage: /캐쉬관리 <보기|주기|뺏기|충전목록|확인|권한주기|권한뺏기|내역>
 kor-commands-managecash-description: 캐쉬를 관리합니다.
 
 kor-commands-mycash: 내캐쉬
@@ -21,18 +21,28 @@ kor-commands-take: 뺏기
 kor-commands-chargelist: 충전목록
 kor-commands-check: 확인
 kor-commands-givepermission: 권한주기
+kor-commands-takepermission: 권한뺏기
 
 kor-commands-cash-charge-usage: "/캐쉬 충전 <핀번호>"
 kor-commands-cash-log-usage: "/캐쉬 내역 <페이지>"
-kor-commands-managecash-see-usage: "/캐쉬 보기 <플레이어>"
-kor-commands-managecash-give-usage: "/캐쉬 주기 <플레이어> <금액>"
-kor-commands-managecash-take-usage: "/캐쉬 뺏기 <플레이어> <금액>"
+kor-commands-managecash-see-usage: "/캐쉬관리 보기 <플레이어>"
+kor-commands-managecash-give-usage: "/캐쉬관리 주기 <플레이어> <금액>"
+kor-commands-managecash-take-usage: "/캐쉬관리 뺏기 <플레이어> <금액>"
+kor-commands-managecash-chargelist-usage: "/캐쉬관리 충전목록 <페이지>"
+kor-commands-managecash-check-usage: "/캐쉬관리 확인 <플레이어> <비고>"
+kor-commands-managecash-givepermission: "/캐쉬관리 권한주기 <플레이어>"
+kor-commands-managecash-takepermission: "/캐쉬관리 권한뺏기 <플레이어>"
+kor-commands-managecash-log-usage: "/캐쉬관리 내역 <플레이어> <페이지>"
 
 kor-show-cash: "당신의 보유 캐쉬: %cash캐쉬"
 kor-complete-charge-ask: "캐쉬 충전 요청이 완료되었습니다. 캐쉬는 관리자의 확인이 완료된 뒤에 지급됩니다."
 kor-see-cash: "%player의 캐쉬: %cash캐쉬"
 kor-give-cash: "%player 에게 %cash캐쉬를 지급했습니다."
 kor-take-cash: "%player 의 캐쉬 %cash캐쉬를 차감했습니다."
+kor-give-permission: "%player에게 캐쉬관리권한을 줬습니다."
+kor-remove-permission: "%player의 캐쉬관리권한을 제거했습니다."
+kor-check-cash: "%player의 캐쉬충전 요청을 확인했습니다."
 
 kor-not-right-pin: "%pin은 올바르지 않은 핀번호 입니다!"
 kor-not-have-account: "%player는 계정을 가지고 있지 않습니다."
+kor-page-must-integer: "페이지는 정수만 입력 가능합니다."

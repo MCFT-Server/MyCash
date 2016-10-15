@@ -19,6 +19,8 @@ public class DataBase extends BaseDB<Main> {
 		initDB("config", new File(plugin.getDataFolder(), "config.yml"), Config.YAML, new ConfigSection() {{
 			put("default-cash", 0);
 		}});
+		initDB("permlist", new File(plugin.getDataFolder(), "permlist.json"), Config.JSON);
+		initDB("log", new File(plugin.getDataFolder(), "log.json"), Config.JSON);
 		
 		registerCommands();
 		if (instance == null) instance = this;

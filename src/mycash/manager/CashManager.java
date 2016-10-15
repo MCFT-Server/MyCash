@@ -1,5 +1,7 @@
 package mycash.manager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import cn.nukkit.Player;
@@ -54,10 +56,42 @@ public class CashManager {
 	/**
 	 * 
 	 * @param pinNumber 
-	 * pinNumber pattern is xxxx-xxxx-xxxx-xxxxxx
+	 * pinNumber pattern is xxxx-xxxx-xxxx-xxxxxx or xxxx-xxxx-xxxx-xxxx
 	 * @return boolean
 	 */
 	public boolean isRightPinNumber(String pinNumber) {
 		return Pattern.matches(".... .... .... ....", pinNumber) ? true : Pattern.matches(".... .... .... ......", pinNumber);
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void givePermission(String player) {
+		List list = getDB().getDB("permlist").getList("list", new ArrayList<>());
+		list.add(player.toLowerCase());
+		getDB().getDB("permlist").set("list", list);
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public void removePermission(String player) {
+		List list = getDB().getDB("permlist").getList("list", new ArrayList<>());
+		list.remove(player.toLowerCase());
+		getDB().getDB("permlist").set("list", list);
+	}
+	
+	public boolean hasPermission(String player) {
+		return getDB().getDB("permlist").getList("list", new ArrayList<>()).contains(player.toLowerCase());
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void addLog(String player, String ref) {
+		getDB().getDB("waitlist").getList(player.toLowerCase(), new ArrayList<>()).forEach(pin -> {
+			List list = getDB().getDB("log").getList(player.toLowerCase(), new ArrayList<>());
+			list.add(pin + ", " + ref);
+			getDB().getDB("log").set(player.toLowerCase(), list);
+		});
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List getLog(String player) {
+		return getDB().getDB("log").getList(player.toLowerCase(), new ArrayList<>());
 	}
 }

@@ -22,6 +22,11 @@ public class Main extends PluginBase {
 	}
 	
 	@Override
+	public void onDisable() {
+		getDB().save();
+	}
+	
+	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		return listener.onCommand(sender, command, label, args);
 	}
