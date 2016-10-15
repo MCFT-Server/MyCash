@@ -18,6 +18,7 @@ import mycash.cash.Account;
 import mycash.database.DataBase;
 import mycash.exception.PlayerAlreadyHaveAccountException;
 import mycash.exception.PlayerNotHaveAccountException;
+import mycash.exception.PlayerNotHaveEnoughCashExeception;
 import mycash.manager.CashManager;
 import mycash.manager.PageCreater;
 
@@ -122,7 +123,11 @@ public class EventListener implements Listener {
 				try {
 					Account account = new Account(args[1]);
 					int cash = Integer.parseInt(args[2]);
-					account.addCash(cash);
+					try {
+						account.reduceCash(cash);
+					} catch (PlayerNotHaveEnoughCashExeception e) {
+						account.setCash(0);
+					}
 					message(sender, getMessage("take-cash").replace("%player", args[1]).replace("%cash", args[2]));
 				} catch (PlayerNotHaveAccountException e) {
 					alert(sender, getMessage("not-have-account").replace("%player", args[1]));
