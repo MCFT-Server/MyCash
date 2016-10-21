@@ -3,7 +3,6 @@ package mycash.cash;
 import cn.nukkit.IPlayer;
 import cn.nukkit.Server;
 import mycash.database.DataBase;
-import mycash.exception.PlayerNotHaveAccountException;
 import mycash.exception.PlayerNotHaveEnoughCashExeception;
 
 public class Account {
@@ -14,8 +13,6 @@ public class Account {
 	}
 	public Account(IPlayer player) {
 		owner = player;
-		int cash = getCash();
-		if (cash == -1) throw new PlayerNotHaveAccountException();
 	}
 	
 	public IPlayer getOwner() {
@@ -32,7 +29,7 @@ public class Account {
 	}
 	
 	public void addCash(int cash) {
-		DataBase.getInstance().getDB("cash").set(owner.getName().toLowerCase(), getCash() + cash);
+		DataBase.getInstance().getDB("cash").set(owner.getName().toLowerCase(), getCash() == -1 ? cash : getCash() + cash);
 	}
 	
 	public void reduceCash(int cash) throws PlayerNotHaveEnoughCashExeception {

@@ -16,7 +16,6 @@ import cn.nukkit.utils.TextFormat;
 import mycash.Main;
 import mycash.cash.Account;
 import mycash.database.DataBase;
-import mycash.exception.PlayerAlreadyHaveAccountException;
 import mycash.exception.PlayerNotHaveAccountException;
 import mycash.exception.PlayerNotHaveEnoughCashExeception;
 import mycash.manager.CashManager;
@@ -69,7 +68,8 @@ public class EventListener implements Listener {
 					PageCreater creater = new PageCreater();
 					Arrays.asList(creater.getPage(CashManager.getInstance().getLog(sender.getName()).toArray(), page))
 							.forEach(msg -> {
-								if (msg == null) return;
+								if (msg == null)
+									return;
 								message(sender, msg.toString());
 							});
 				} catch (NumberFormatException e) {
@@ -81,7 +81,8 @@ public class EventListener implements Listener {
 				return true;
 			}
 		} else if (command.getName().equals(getMessage("commands-managecash"))) {
-			if (!CashManager.getInstance().hasPermission(sender.getName()) && !(sender instanceof ConsoleCommandSender)) {
+			if (!CashManager.getInstance().hasPermission(sender.getName())
+					&& !(sender instanceof ConsoleCommandSender)) {
 				sender.sendMessage(new TranslationContainer(TextFormat.RED + "%commands.generic.permission"));
 				return true;
 			}
@@ -94,12 +95,13 @@ public class EventListener implements Listener {
 					alert(sender, getMessage("commands-managecash-see-usage"));
 					return true;
 				}
-				try {
-					message(sender, getMessage("see-cash").replace("%player", args[1]).replace("%cash",
-							new Integer(new Account(args[1]).getCash()).toString()));
-				} catch (PlayerNotHaveAccountException e) {
+				Integer cash = new Account(args[1]).getCash();
+				if (cash == -1) {
 					alert(sender, getMessage("not-have-account").replace("%player", args[1]));
+					return true;
 				}
+				message(sender, getMessage("see-cash").replace("%player", args[1]).replace("%cash",
+						cash.toString()));
 				return true;
 			} else if (args[0].toLowerCase().equals(getMessage("commands-give"))) {
 				if (args.length < 3) {
@@ -141,9 +143,11 @@ public class EventListener implements Listener {
 				try {
 					int page = Integer.parseInt(args[1]);
 					PageCreater creater = new PageCreater();
-					Arrays.asList(creater.getPage(Arrays.copyOfRange(getWaitList().toArray(), 0, getWaitList().size(), String[].class), page)).forEach(result -> {
-						message(sender, result);
-					});
+					Arrays.asList(creater.getPage(
+							Arrays.copyOfRange(getWaitList().toArray(), 0, getWaitList().size(), String[].class), page))
+							.forEach(result -> {
+								message(sender, result);
+							});
 				} catch (NumberFormatException e) {
 					alert(sender, getMessage("page-must-integer"));
 				}
@@ -190,7 +194,8 @@ public class EventListener implements Listener {
 					PageCreater creater = new PageCreater();
 					Arrays.asList(creater.getPage(CashManager.getInstance().getLog(args[1]).toArray(), page))
 							.forEach(msg -> {
-								if (msg == null) return;
+								if (msg == null)
+									return;
 								message(sender, msg.toString());
 							});
 				} catch (NumberFormatException e) {
@@ -233,9 +238,9 @@ public class EventListener implements Listener {
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
-		try {
-			CashManager.getInstance().initCash(event.getPlayer());
-		} catch (PlayerAlreadyHaveAccountException e) {
+		Account account = new Account(event.getPlayer());
+		if (account.getCash() == -1) {
+			account.setCash(0);
 		}
 	}
 

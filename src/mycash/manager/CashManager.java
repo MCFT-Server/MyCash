@@ -7,7 +7,6 @@ import java.util.regex.Pattern;
 import cn.nukkit.Player;
 import mycash.cash.Account;
 import mycash.database.DataBase;
-import mycash.exception.PlayerAlreadyHaveAccountException;
 
 public class CashManager {
 	private static CashManager instance;
@@ -23,24 +22,12 @@ public class CashManager {
 		return instance;
 	}
 	
-	
-	public void initCash(Player player) throws PlayerAlreadyHaveAccountException {
-		initCash(player.getName());
-	}
-	public void initCash(String player) throws PlayerAlreadyHaveAccountException {
-		if (hasAccount(player)) {
-			throw new PlayerAlreadyHaveAccountException();
-		}
-		getDB().getDB("cash").set(player.toLowerCase(), getDB().getDB("config").getInt("default-cash", 0));
-	}
-	
-	
 	public boolean hasAccount(Player player) {
 		return hasAccount(player.getName());
 	}
 	public boolean hasAccount(String player) {
 		player = player.toLowerCase();
-		if (getDB().getDB("cash").getInt(player.toLowerCase(), -1) == -1) {
+		if (getAccount(player).getCash() == -1) {
 			return false;
 		}
 		return true;
