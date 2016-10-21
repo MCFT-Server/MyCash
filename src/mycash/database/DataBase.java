@@ -26,8 +26,8 @@ public class DataBase extends BaseDB<Main> {
 		if (instance == null) instance = this;
 	}
 	private void registerCommands() {
-		registerCommand(get("commands-cash"), get("commands-cash-description"), get("commands-cash-usage"), "mycash.commands.cash");
-		registerCommand(get("commands-managecash"), get("commands-managecash-description"), get("commands-managecash-usage"), "");
+		registerCommand(get("commands-cash"), get("commands-cash-description"), get("commands-cash-usage"), "mycash.commands.cash.*");
+		registerCommand(get("commands-managecash"), get("commands-managecash-description"), get("commands-managecash-usage"), "mycash.commands.managecash.*");
 	}
 
 	public static DataBase getInstance() {

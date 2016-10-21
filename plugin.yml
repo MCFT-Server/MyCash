@@ -14,14 +14,12 @@ permissions:
      mycash.commands.cash.*:
       default: true
       children:
-       mycash.commands.cash:
        mycash.commands.cash.mycash:
        mycash.commands.cash.charge:
        mycash.commands.cash.history:
      mycash.commands.managecash.*:
       default: OP
       children:
-       mycash.commands.managecash:
        mycash.commands.managecash.see:
        mycash.commands.managecash.give:
        mycash.commands.managecash.take:
