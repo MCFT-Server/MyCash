@@ -31,7 +31,7 @@ public class CashManager {
 		if (hasAccount(player)) {
 			throw new PlayerAlreadyHaveAccountException();
 		}
-		getDB().getDB("cash").set(player, getDB().getDB("config").getInt("default-cash", 0));
+		getDB().getDB("cash").set(player.toLowerCase(), getDB().getDB("config").getInt("default-cash", 0));
 	}
 	
 	
