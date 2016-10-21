@@ -40,7 +40,7 @@ public class CashManager {
 	}
 	public boolean hasAccount(String player) {
 		player = player.toLowerCase();
-		if (getDB().getDB("cash").getInt(player, -1) == -1) {
+		if (getDB().getDB("cash").getInt(player.toLowerCase(), -1) == -1) {
 			return false;
 		}
 		return true;
