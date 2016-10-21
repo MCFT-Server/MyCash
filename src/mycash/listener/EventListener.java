@@ -39,8 +39,10 @@ public class EventListener implements Listener {
 				return true;
 			}
 			if (args[0].toLowerCase().equals(getMessage("commands-mycash"))) {
-				message(sender, getMessage("show-cash").replace("%cash",
-						new Integer(new Account((Player) sender).getCash()).toString()));
+				Integer cash = new Account((Player) sender).getCash();
+				if (cash == -1)
+					cash = 0;
+				message(sender, getMessage("show-cash").replace("%cash", cash.toString()));
 				return true;
 			} else if (args[0].toLowerCase().equals(getMessage("commands-charge"))) {
 				if (args.length < 2) {
@@ -97,11 +99,9 @@ public class EventListener implements Listener {
 				}
 				Integer cash = new Account(args[1]).getCash();
 				if (cash == -1) {
-					alert(sender, getMessage("not-have-account").replace("%player", args[1]));
-					return true;
+					cash = 0;
 				}
-				message(sender, getMessage("see-cash").replace("%player", args[1]).replace("%cash",
-						cash.toString()));
+				message(sender, getMessage("see-cash").replace("%player", args[1]).replace("%cash", cash.toString()));
 				return true;
 			} else if (args[0].toLowerCase().equals(getMessage("commands-give"))) {
 				if (args.length < 3) {
