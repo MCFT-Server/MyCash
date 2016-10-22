@@ -146,7 +146,9 @@ public class EventListener implements Listener {
 					Arrays.asList(creater.getPage(
 							Arrays.copyOfRange(getWaitList().toArray(), 0, getWaitList().size(), String[].class), page))
 							.forEach(result -> {
-								message(sender, result);
+								if (result != null) {
+									message(sender, result);
+								}
 							});
 				} catch (NumberFormatException e) {
 					alert(sender, getMessage("page-must-integer"));
@@ -241,6 +243,9 @@ public class EventListener implements Listener {
 		Account account = new Account(event.getPlayer());
 		if (account.getCash() == -1) {
 			account.setCash(0);
+		}
+		if (CashManager.getInstance().hasPermission(event.getPlayer().getName()) && CashManager.getInstance().hasChargeList()) {
+			alert(event.getPlayer(), getMessage("exist-charge"));
 		}
 	}
 

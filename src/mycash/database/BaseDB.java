@@ -16,7 +16,7 @@ abstract class BaseDB<T extends PluginBase> {
 	private LinkedHashMap<String, Config> dblist;
 	private Config messages;
 	private String prefix;
-	private static final int m_version = 1;
+	private static final int m_version = 2;
 	
 	BaseDB(T plugin) {
 		this.plugin = plugin;

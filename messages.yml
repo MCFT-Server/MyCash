@@ -1,4 +1,4 @@
-m_version: 1
+m_version: 2
 
 default-language: kor
 
@@ -42,6 +42,7 @@ kor-take-cash: "%player 의 캐쉬 %cash캐쉬를 차감했습니다."
 kor-give-permission: "%player에게 캐쉬관리권한을 줬습니다."
 kor-remove-permission: "%player의 캐쉬관리권한을 제거했습니다."
 kor-check-cash: "%player의 캐쉬충전 요청을 확인했습니다."
+kor-exist-charge: "충전 목록이 존재합니다. 확인해주세요!"
 
 kor-not-right-pin: "%pin은 올바르지 않은 핀번호 입니다!"
 kor-not-have-account: "%player는 계정을 가지고 있지 않습니다."
