@@ -22,6 +22,6 @@ public class PageCreater {
 	}
 
 	public <T> T[] getPage(T[] args, int page) {
-		return Arrays.copyOfRange(args, page * getPageCount() - 5, page * getPageCount());
+		return Arrays.copyOfRange(args, page * getPageCount() - getPageCount(), page * getPageCount());
 	}
 }
